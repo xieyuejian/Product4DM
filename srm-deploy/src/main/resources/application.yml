@@ -1,0 +1,353 @@
+spring:
+  profiles:
+    active:
+    - local
+
+#-------------------------------------------------------------本机-------------------------------------------------------------#
+---
+# 端口号
+server:
+  port: 9903
+  max-http-header-size: 102400
+  error:
+    include-stacktrace: on-trace-param
+
+eapcloud:
+  developer: -xieyj
+  console:
+    developer:
+  log:
+    system:
+      level: info
+      loggers: slf4j
+    persistence:
+      level: info
+      loggers: jpa,slf4j
+    auto: 
+      methods: save,delete,update
+  license:
+    magicNumber: 01-00-00-00
+    projectNo: huiju.srm.ent
+    
+#监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+    
+spring:
+  profiles: local
+  application: 
+    name: srm
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  activiti: 
+    check-process-definitions: false
+    database-schema-update: none
+  datasource:
+    username: srment
+    password: srment666
+    jdbc-url: jdbc:dm://192.168.1.161:5236
+    driver-class-name: dm.jdbc.driver.DmDriver
+    url: ${spring.datasource.jdbc-url}?user=${spring.datasource.username}&password=${spring.datasource.password}&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8jdbc:mysql://localhost:3306/ag_admin?useUnicode=true&amp;characterEncoding=UTF8&socketTimeout=60000
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    database-platform: org.hibernate.dialect.DmDialect
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  cloud:
+    ##基于consul注册中心的配置
+    consul:
+      host: 192.168.1.24
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        ip-address: 192.168.0.104 #本机IP地址
+        port: ${SERVER_PORT:${server.port}}
+        ##这个配置必须配置为true 否则consul会将服务认为不健康服务，导致无法正常路由
+        heartbeat:
+          enabled: true
+        health-check-path: /health
+        health-check-interval: 15s
+        instance-id: srm${eapcloud.developer}-${server.port}
+        service-name: srm${eapcloud.developer}
+  redis:
+    host: 192.168.1.239
+    port: 16379
+    password: redis239a
+    database: 15
+    timeout: 60s
+    jedis:
+      pool:
+        max-active: -1
+        max-idle: 15
+        max-wait: -1s
+        min-idle: 5
+
+# 这个很重要，处理Forwarding error异常
+hystrix: 
+  command: 
+    default: 
+      execution:  
+        isolation:  
+          thread:   
+            timeoutInMilliseconds: 150000000 #断路器的超时时间,断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试。
+# ribbon
+ribbon:
+  ConnectTimeout: 8800000 #ribbon请求连接的超时时间
+  ReadTimeout: 8800000 #请求处理的超时时间
+  OkToRetryOnAllOperations: true #对所有操作请求都进行重试
+  MaxAutoRetries: 1 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 1 #对下个实例的重试次数
+  
+huiju:
+  amqp:
+    route-key-suffix: ${spring.profiles}${eapcloud.developer:}
+    exchange-mode: topic #topic, fanout, direct, header
+    connectionFactory:
+      host: 192.168.1.134
+      username: guest
+      password: guest
+      virtualhost: /
+      automaticRecoveryEnabled: false
+      topologyRecoveryEnabled: false
+
+#-------------------------------------------------------------开发服务器-------------------------------------------------------------#
+---
+# 端口号
+server:
+  port: 9903
+  max-http-header-size: 102400
+  error:
+    include-stacktrace: on-trace-param
+
+eapcloud:
+  developer:
+  console:
+    developer:
+  log:
+    system:
+      level: info
+      loggers: slf4j
+    persistence:
+      level: info
+      loggers: jpa,slf4j
+    auto: 
+      methods: save,delete,update
+  license:
+    magicNumber: 01-00-00-00
+    projectNo: huiju.srm.ent
+    
+#监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+    
+spring:
+  profiles: dev
+  application: 
+    name: srm
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  activiti: 
+    check-process-definitions: false
+    database-schema-update: none
+  datasource:
+    username: srment
+    password: srment888
+    jdbc-url: jdbc:mysql://192.168.1.238:3306/srment6
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${spring.datasource.jdbc-url}?user=${spring.datasource.username}&password=${spring.datasource.password}&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    hikari:
+      maximum-pool-size: 200
+      minimum-idle: 10
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  cloud:
+    ##基于consul注册中心的配置
+    consul:
+      host: 192.168.1.24
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        ip-address: 192.168.1.24
+        port: ${SERVER_PORT:${server.port}}
+        ##这个配置必须配置为true 否则consul会将服务认为不健康服务，导致无法正常路由
+        heartbeat:
+          enabled: true
+        health-check-path: /health
+        health-check-interval: 15s
+        instance-id: srm${eapcloud.developer}-${server.port}
+        service-name: srm${eapcloud.developer}
+  redis:
+    host: 192.168.1.239
+    port: 16379
+    password: redis239a
+    database: 15
+    timeout: 60s
+    jedis:
+      pool:
+        max-active: -1
+        max-idle: 15
+        max-wait: -1s
+        min-idle: 5
+
+# 这个很重要，处理Forwarding error异常
+hystrix: 
+  command: 
+    default: 
+      execution:  
+        isolation:  
+          thread:   
+            timeoutInMilliseconds: 150000000 #断路器的超时时间,断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试。
+# ribbon
+ribbon:
+  ConnectTimeout: 8800000 #ribbon请求连接的超时时间
+  ReadTimeout: 8800000 #请求处理的超时时间
+  OkToRetryOnAllOperations: true #对所有操作请求都进行重试
+  MaxAutoRetries: 1 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 1 #对下个实例的重试次数
+  
+huiju:
+  amqp:
+    route-key-suffix: ${spring.profiles}${eapcloud.developer:}
+    exchange-mode: topic #topic, fanout, direct, header
+    connectionFactory:
+      host: 192.168.1.134
+      username: guest
+      password: guest
+      virtualhost: /
+
+#-------------------------------------------------------------测试服务器-------------------------------------------------------------#
+---
+# 端口号
+server:
+  port: 9903
+  max-http-header-size: 102400
+  error:
+    include-stacktrace: on-trace-param
+
+eapcloud:
+  developer:
+  console:
+    developer:
+  log:
+    system:
+      level: info
+      loggers: slf4j
+    persistence:
+      level: info
+      loggers: jpa,slf4j
+    auto: 
+      methods: save,delete,update
+  license:
+    magicNumber: 01-00-00-00
+    projectNo: huiju.srm.ent
+    
+#监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+    
+spring:
+  profiles: test
+  application: 
+    name: srm
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  activiti: 
+    check-process-definitions: false
+    database-schema-update: none
+  datasource:
+    username: srment
+    password: srment666
+    jdbc-url: jdbc:mysql://192.168.1.84:3306/srment6
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${spring.datasource.jdbc-url}?user=${spring.datasource.username}&password=${spring.datasource.password}&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    hikari:
+      maximum-pool-size: 200
+      minimum-idle: 10
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  cloud:
+    ##基于consul注册中心的配置
+    consul:
+      host: 192.168.1.74
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        ip-address: 192.168.1.74
+        port: ${SERVER_PORT:${server.port}}
+        ##这个配置必须配置为true 否则consul会将服务认为不健康服务，导致无法正常路由
+        heartbeat:
+          enabled: true
+        health-check-path: /health
+        health-check-interval: 15s
+        instance-id: srm${eapcloud.developer}-${server.port}
+        service-name: srm${eapcloud.developer}
+  redis:
+    host: 192.168.1.239
+    port: 16379
+    password: redis239a
+    database: 14
+    timeout: 60s
+    jedis:
+      pool:
+        max-active: -1
+        max-idle: 15
+        max-wait: -1s
+        min-idle: 5
+
+# 这个很重要，处理Forwarding error异常
+hystrix: 
+  command: 
+    default: 
+      execution:  
+        isolation:  
+          thread:   
+            timeoutInMilliseconds: 150000000 #断路器的超时时间,断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试。
+# ribbon
+ribbon:
+  ConnectTimeout: 8800000 #ribbon请求连接的超时时间
+  ReadTimeout: 8800000 #请求处理的超时时间
+  OkToRetryOnAllOperations: true #对所有操作请求都进行重试
+  MaxAutoRetries: 1 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 1 #对下个实例的重试次数
+  
+huiju:
+  amqp:
+    route-key-suffix: ${spring.profiles}${eapcloud.developer:}
+    exchange-mode: topic #topic, fanout, direct, header
+    connectionFactory:
+      host: 192.168.1.134
+      username: guest
+      password: guest
+      virtualhost: /

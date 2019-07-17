@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="deliveryOne" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bd2aacf6-daf7-4671-ace2-00bc0e9dceeb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="25"/>
+	<property name="ireport.y" value="0"/>
+	<style name="自定义" hAlign="Center" vAlign="Middle" fontName="SansSerif" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+	<parameter name="id" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+  d.deliverycode as DELIVERYCODE,
+  d.plantcode as PLANTCODE,
+  d.plantname as PLANTNAME,
+  p.address as ADDRESS,
+  d.vendorerpcode as VENDORCODE,
+  d.vendorname as VENDORNAME,
+  d.deliverydate as DELIVERYDATE,
+  dt.purchaseordercode as PURCHASEORDERCODE,
+  dt.linenumber as LINENUMBER,
+  dt.materialcode as MATERIALCODE,
+  dt.materialname as MATERIALNAME,
+  dt.unitname as UNITNAME,
+  dt.deliverynumber as DELIVERYNUMBER,
+  dt.remark as REMARK
+from d_cp_delivery d right join d_cp_deliverydtl dt on d.deliveryid = dt.deliveryid
+left join b_md_plant p on d.plantcode = p.plantcode
+where d.deliveryid = $P{id}]]>
+	</queryString>
+	<field name="DELIVERYCODE" class="java.lang.String">
+		<fieldDescription><![CDATA[送货单号]]></fieldDescription>
+	</field>
+	<field name="PLANTCODE" class="java.lang.String">
+		<fieldDescription><![CDATA[工厂编码]]></fieldDescription>
+	</field>
+	<field name="PLANTNAME" class="java.lang.String">
+		<fieldDescription><![CDATA[工厂名称]]></fieldDescription>
+	</field>
+	<field name="ADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[地址]]></fieldDescription>
+	</field>
+	<field name="VENDORCODE" class="java.lang.String">
+		<fieldDescription><![CDATA[供应商编码]]></fieldDescription>
+	</field>
+	<field name="VENDORNAME" class="java.lang.String">
+		<fieldDescription><![CDATA[供应商名称]]></fieldDescription>
+	</field>
+	<field name="DELIVERYDATE" class="java.lang.String">
+		<fieldDescription><![CDATA[交货日期]]></fieldDescription>
+	</field>
+	<field name="PURCHASEORDERCODE" class="java.lang.String">
+		<fieldDescription><![CDATA[采购组织编码]]></fieldDescription>
+	</field>
+	<field name="LINENUMBER" class="java.lang.Long">
+		<fieldDescription><![CDATA[行号]]></fieldDescription>
+	</field>
+	<field name="MATERIALCODE" class="java.lang.String">
+		<fieldDescription><![CDATA[物料编码]]></fieldDescription>
+	</field>
+	<field name="MATERIALNAME" class="java.lang.String">
+		<fieldDescription><![CDATA[物料名称]]></fieldDescription>
+	</field>
+	<field name="UNITNAME" class="java.lang.String">
+		<fieldDescription><![CDATA[单位名称]]></fieldDescription>
+	</field>
+	<field name="DELIVERYNUMBER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[送货数量]]></fieldDescription>
+	</field>
+	<field name="REMARK" class="java.lang.String">
+		<fieldDescription><![CDATA[备注]]></fieldDescription>
+	</field>
+	<variable name="index" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{index}.valueOf( 1 )]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement style="自定义" x="668" y="3" width="134" height="20" uuid="6e835952-10e7-407f-93a3-581d5b0dfdae"/>
+				<textElement textAlignment="Left">
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA["第" + $V{PAGE_NUMBER} + "页/共" + $V{PAGE_NUMBER} + "页"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="79" uuid="143b34a2-5129-4e9b-acde-6fc390251c23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="24" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[送货单]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement style="自定义" x="727" y="23" width="75" height="20" uuid="56f18dc3-0ce5-482c-a654-b1cc9e056094"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.util.Calendar.getInstance().getTime()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="自定义" x="653" y="23" width="74" height="20" uuid="7cfcf15e-9a7e-46bc-9039-019eb03c2aad"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[制单日期：]]></text>
+			</staticText>
+			<image>
+				<reportElement x="13" y="3" width="75" height="75" uuid="a0dca800-6aa4-4b13-a47f-7e7376a9fb76"/>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(new com.google.zxing.qrcode.QRCodeWriter().encode($F{DELIVERYCODE},com.google.zxing.BarcodeFormat.QR_CODE,150,150))]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="106" splitType="Stretch">
+			<staticText>
+				<reportElement style="自定义" x="0" y="46" width="61" height="20" uuid="dfe03d38-2f94-4cd7-a776-4610e635915f"/>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[送货单号：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="自定义" x="61" y="46" width="248" height="20" uuid="f1d867cc-b8c0-4dbf-9b68-5389c1c069ce"/>
+				<textElement textAlignment="Left">
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DELIVERYCODE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="自定义" x="0" y="66" width="61" height="20" uuid="c3fc1eb3-3154-4f27-8de3-db39b1bc1b02"/>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[收货地址：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="自定义" x="61" y="66" width="248" height="20" uuid="a366f07c-6297-4750-a15d-c304d22e61a6"/>
+				<textElement textAlignment="Left">
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ADDRESS} == null ? "" : $F{ADDRESS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="自定义" x="0" y="86" width="61" height="20" uuid="61615c1a-05aa-46fb-a147-8c14807ea2c2"/>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[发货单位：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="自定义" x="61" y="86" width="248" height="20" uuid="15cb18fb-f87e-4104-b5ce-dc9bb3fbd9f7"/>
+				<textElement textAlignment="Left">
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENDORCODE} +"  "+ $F{VENDORNAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="自定义" x="513" y="46" width="61" height="20" uuid="8349eb8a-c08e-4b9c-bc7e-2f20503926d1"/>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[发货工厂：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="513" y="86" width="61" height="20" uuid="c8e304bb-483c-4add-9638-6ccaf057c035"/>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[送货日期：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="自定义" x="574" y="46" width="228" height="20" uuid="08bf5619-611c-4bec-ba37-f9d0716ad5ce"/>
+				<textElement textAlignment="Left">
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PLANTNAME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="true">
+				<reportElement style="自定义" x="574" y="86" width="228" height="20" uuid="b2f6ca57-df4a-400d-862d-eb9ecd23f720"/>
+				<textElement textAlignment="Left">
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DELIVERYDATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement style="自定义" x="0" y="0" width="35" height="20" uuid="553c3d4a-3a1b-48e0-a00a-3f689c06afc1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[序号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="35" y="0" width="126" height="20" uuid="76a8b3e7-bd26-4af7-89da-dbde2b7dd90b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[订单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="161" y="0" width="37" height="20" uuid="7ff6175d-df41-476a-b1e6-b57d3cf243df"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[行号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="592" y="0" width="210" height="20" uuid="be271c2d-822e-45dc-9a98-7951e1a74fa7"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[备注]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="198" y="0" width="99" height="20" uuid="03a05587-f82e-4515-83b9-a510aa1fe508"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[物料编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="297" y="0" width="98" height="20" uuid="f3a27c77-d12c-47b0-924b-46b7a60e772b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[物料名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="395" y="0" width="40" height="20" uuid="584c5faf-8b37-4dad-b7e4-6bd7f2c51ec3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[单位]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="435" y="0" width="78" height="20" uuid="5ff88700-323a-4542-969b-89bb4ac5852c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[送货数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="513" y="0" width="79" height="20" uuid="d70c40bc-056e-49a8-8558-46fc97b97bd3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[实收数量]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="自定义" x="0" y="0" width="35" height="20" uuid="49ccf834-905d-40b2-ab03-e772b3f41928"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{index}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="自定义" x="35" y="0" width="126" height="20" uuid="d0b5d494-1a5b-4e5e-b47e-f9eab2ce53c2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASEORDERCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="自定义" x="161" y="0" width="37" height="20" uuid="691567db-26ea-42eb-a95a-2804f3c3dd32"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LINENUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="自定义" x="198" y="0" width="99" height="20" uuid="f7d8d03c-7407-4e51-9dd7-927fb1706d47"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="自定义" x="297" y="0" width="98" height="20" uuid="19f78a19-d69f-4c1e-b900-ef3ca11eb7b5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALNAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="自定义" x="395" y="0" width="40" height="20" uuid="7c2543c6-f298-4d98-9d30-800fbedffb6b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNITNAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="自定义" x="435" y="0" width="78" height="20" uuid="2848b2c8-9bb5-430e-bfcf-93b286d8048f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DELIVERYNUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="自定义" x="513" y="0" width="79" height="20" uuid="4f4358dc-1eb9-4cb5-87b1-85127a9a9115"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="自定义" x="592" y="0" width="210" height="20" uuid="7dce55bf-2501-405a-8e78-be8b82194f4a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REMARK} == null ? "" : null]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement style="自定义" x="0" y="0" width="88" height="20" uuid="5bb356ba-cf3e-441b-aa43-6dd58970f4e9"/>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[送货（签字）：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="自定义" x="395" y="0" width="86" height="20" uuid="e9965f3b-8363-4957-bd21-515ffcecf0a8"/>
+				<textElement>
+					<font pdfFontName="STSong-Light"/>
+				</textElement>
+				<text><![CDATA[收货（签字）：]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -1,0 +1,1 @@
+Ext.define("Ext.srm.dictionary.EvalFactiorStore",{extend:"Ext.ux.data.JsonStore",alias:"evalFactiorStore",xtype:"evalFactiorStore",storeId:"evalFactiorStore",fields:["evalFactorCode","evalFactorName"],autoLoad:true,constructor:function(A){var A=A||{};this.proxy={url:path_srment+"/bd/bid/EvalTypeFactior_getAll.action",type:"ajax"};this.callParent([A])}});

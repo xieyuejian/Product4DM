@@ -1,0 +1,9 @@
+spring:
+  application: 
+    name: srm
+    
+eapcloud:
+  logback:
+    path: /deploy/logs
+    jpaSqlLevel: WARNING 
+    jpaBinderLevel: WARNING

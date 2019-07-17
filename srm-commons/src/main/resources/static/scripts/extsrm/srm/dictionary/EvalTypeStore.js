@@ -1,0 +1,1 @@
+Ext.define("Ext.srm.dictionary.EvalTypeStore",{extend:"Ext.ux.data.JsonStore",alias:"evalTypeStore",xtype:"evalTypeStore",storeId:"evalTypeStore",fields:["evalTypeCode","evalTypeName"],autoLoad:true,constructor:function(A){var A=A||{};this.proxy={url:path_srment+"/bd/bid/EvalType_getAll.action",type:"ajax"};this.callParent([A])}});

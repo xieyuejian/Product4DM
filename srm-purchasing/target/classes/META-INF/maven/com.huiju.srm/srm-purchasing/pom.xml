@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.huiju.srm</groupId>
+    <artifactId>srm-parent</artifactId>
+    <version>6.2.0-SNAPSHOT</version>
+    <relativePath>../srm-parent/pom.xml</relativePath>
+  </parent>
+  <artifactId>srm-purchasing</artifactId>
+
+  <scm>
+    <url>http://192.168.1.16/svn/prj_SRM_Ent/01_Developing/1.1_Code/trunk/srm-ent/srm-purchasing</url>
+    <connection>scm:svn:http://192.168.1.16/svn/prj_SRM_Ent/01_Developing/1.1_Code/trunk/srm-ent/srm-purchasing</connection>
+    <developerConnection>scm:svn:http://192.168.1.16/svn/prj_SRM_Ent/01_Developing/1.1_Code/trunk/srm-ent/srm-purchasing</developerConnection>
+  </scm>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.huiju.srm</groupId>
+      <artifactId>srm-api</artifactId>
+      <optional>true</optional>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>

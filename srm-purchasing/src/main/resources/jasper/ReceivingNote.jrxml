@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="收货查询" language="groovy" pageWidth="2650" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="2610" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="690c824e-d1f6-4a88-bc26-3e19cb807212">
+	<property name="ireport.zoom" value="1.3636363636363638"/>
+	<property name="ireport.x" value="1142"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="sql" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+t.*
+from D_CP_RECEIVINGNOTE t $P!{sql}]]>
+	</queryString>
+	<field name="GRNID" class="java.math.BigDecimal"/>
+	<field name="GRNNO" class="java.lang.String"/>
+	<field name="CLIENTCODE" class="java.lang.String"/>
+	<field name="SHOPPINGNOTICENO" class="java.lang.String"/>
+	<field name="SHOPPINGNOTICEDETAILID" class="java.math.BigDecimal"/>
+	<field name="SHOPPINGNOTICEROWID" class="java.math.BigDecimal"/>
+	<field name="PURCHASEORDERNO" class="java.lang.String"/>
+	<field name="PURCHASEORDERDETAILID" class="java.math.BigDecimal"/>
+	<field name="PURCHASINGORGCODE" class="java.lang.String"/>
+	<field name="PURCHASINGORGNAME" class="java.lang.String"/>
+	<field name="PURCHASINGGROUPCODE" class="java.lang.String"/>
+	<field name="PURCHASINGGROUPNAME" class="java.lang.String"/>
+	<field name="VENDORCODE" class="java.lang.String"/>
+	<field name="VENDORNAME" class="java.lang.String"/>
+	<field name="MATERIALID" class="java.math.BigDecimal"/>
+	<field name="MATERIALCODE" class="java.lang.String"/>
+	<field name="MATERIALNAME" class="java.lang.String"/>
+	<field name="QUANTITY" class="java.math.BigDecimal"/>
+	<field name="UNITCODE" class="java.lang.String"/>
+	<field name="ACCEPTRETURNFLAG" class="java.lang.Number"/>
+	<field name="MATERIALCERTIFICATEYEAR" class="java.lang.String"/>
+	<field name="MATERIALCERTIFICATECODE" class="java.lang.String"/>
+	<field name="MATERIALCERTIFICATEITEM" class="java.lang.String"/>
+	<field name="AMOUNTNOTAX" class="java.math.BigDecimal"/>
+	<field name="CURRENCYCODE" class="java.lang.String"/>
+	<field name="TAXCODE" class="java.lang.String"/>
+	<field name="TAXRATE" class="java.math.BigDecimal"/>
+	<field name="SPECIALWHSEFLAG" class="java.lang.String"/>
+	<field name="CERTIFICATEDATE" class="java.sql.Timestamp"/>
+	<field name="POSTINGDATE" class="java.sql.Timestamp"/>
+	<field name="BILLCHECKDATE" class="java.sql.Timestamp"/>
+	<field name="SHOPPINGTIME" class="java.sql.Timestamp"/>
+	<field name="DELIVERYLOCATIONS" class="java.sql.Timestamp"/>
+	<field name="SAPPURCHASEORDERNO" class="java.lang.String"/>
+	<field name="SAPPURCHASEORDERITEM" class="java.lang.String"/>
+	<field name="CERTIFICATEAMOUNT" class="java.math.BigDecimal"/>
+	<field name="PRICE" class="java.math.BigDecimal"/>
+	<field name="TOTALAMOUNTANDTAX" class="java.math.BigDecimal"/>
+	<field name="TOTALTAX" class="java.math.BigDecimal"/>
+	<field name="QUALITYFLAG" class="java.math.BigDecimal"/>
+	<field name="STOCKTYPE" class="java.lang.String"/>
+	<field name="RECEIPTBILLFLAG" class="java.math.BigDecimal"/>
+	<field name="FIXPRICEQTY" class="java.math.BigDecimal"/>
+	<field name="FIXPRICEUNITCODE" class="java.lang.String"/>
+	<field name="STORELOCALCODE" class="java.lang.String"/>
+	<field name="INVOICEQTY" class="java.math.BigDecimal"/>
+	<field name="STOCKQTY" class="java.math.BigDecimal"/>
+	<field name="STOCKUNIT" class="java.lang.String"/>
+	<field name="OMATERIALCERTIFICATEYEAR" class="java.lang.String"/>
+	<field name="OMATERIALCERTIFICATECODE" class="java.lang.String"/>
+	<field name="OMATERIALCERTIFICATEITEM" class="java.lang.String"/>
+	<field name="CREATETIME" class="java.sql.Timestamp"/>
+	<field name="MODIFYTIME" class="java.sql.Timestamp"/>
+	<field name="ENTERWAREHOUSEBATCH" class="java.lang.String"/>
+	<field name="PLANTCODE" class="java.lang.String"/>
+	<field name="VENDORERPCODE" class="java.lang.String"/>
+	<field name="INVOICEFLAG" class="java.math.BigDecimal"/>
+	<field name="MANUALCHECKBATCH" class="java.lang.String"/>
+	<field name="VENDORBATCH" class="java.lang.String"/>
+	<field name="CANCHARGEOFFNUM" class="java.math.BigDecimal"/>
+	<field name="ORIGIN" class="java.math.BigDecimal"/>
+	<field name="STATUS" class="java.math.BigDecimal"/>
+	<field name="RESULTCODE" class="java.lang.String"/>
+	<field name="RESULTNAME" class="java.lang.String"/>
+	<field name="CREATEUSERID" class="java.math.BigDecimal"/>
+	<field name="CREATEUSERNAME" class="java.lang.String"/>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="2610" height="40" isPrintWhenDetailOverflows="true" uuid="0ab18137-3515-47bc-bde7-39d712d4e9fc"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="14" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[收货查询]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="159" height="20" isPrintWhenDetailOverflows="true" uuid="22dba316-5243-4643-ae33-2128c8b164c2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[收货单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="0" width="156" height="20" isPrintWhenDetailOverflows="true" uuid="df6b6222-0769-44d4-8036-7d444c90e4e9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[采购订单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="0" width="151" height="20" isPrintWhenDetailOverflows="true" uuid="d425c7e9-1064-43bc-91a9-ea8ed972ba11"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[发货单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="0" width="80" height="20" isPrintWhenDetailOverflows="true" uuid="f9accae3-f041-4a21-85a9-ffd07fe00df5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[供应商编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="546" y="0" width="150" height="20" isPrintWhenDetailOverflows="true" uuid="a16ca794-097c-4a18-93a5-2a1d1f03f975"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[供应商名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="696" y="0" width="80" height="20" isPrintWhenDetailOverflows="true" uuid="5d32df7e-3f1f-4ed1-a357-546a3bd5e206"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[物料编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="776" y="0" width="150" height="20" isPrintWhenDetailOverflows="true" uuid="ab1ea34c-218f-4542-8dde-5bdc74efd40e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[物料名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="926" y="0" width="80" height="20" isPrintWhenDetailOverflows="true" uuid="cbb98537-8b81-42b6-8e02-4ff5a9f9169b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[收货数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1006" y="0" width="50" height="20" isPrintWhenDetailOverflows="true" uuid="b23a97cb-73c3-40fb-ad15-3227d4862f7e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[单位]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1056" y="0" width="80" height="20" isPrintWhenDetailOverflows="true" uuid="cf21341c-c5f9-4312-8011-fa19f7bfa126"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[收退货标识]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1136" y="0" width="86" height="20" isPrintWhenDetailOverflows="true" uuid="d6ef4880-e4ec-44fd-aff4-bc181ac6541b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[物料凭证年度]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1222" y="0" width="120" height="20" isPrintWhenDetailOverflows="true" uuid="2d9a1cf8-76a2-467e-a8b0-ef8d57cbd957"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[物料凭证编号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1342" y="0" width="80" height="20" isPrintWhenDetailOverflows="true" uuid="292a9724-221d-44d2-a6de-a41b38db3c8f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[物料凭证项目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1422" y="0" width="50" height="20" isPrintWhenDetailOverflows="true" uuid="594bca56-091b-413b-b652-cf6910a5e560"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[税率码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1472" y="0" width="50" height="20" isPrintWhenDetailOverflows="true" uuid="84c57435-548b-4fdf-8e39-46454ba2930d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[税率]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1522" y="0" width="80" height="20" isPrintWhenDetailOverflows="true" uuid="a0655092-5b4c-46bb-a406-1a280d4f506a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[凭证日期]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1602" y="0" width="80" height="20" uuid="d19df8ce-78cc-47d1-8d5f-dde530fe28bf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[过账日期]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1682" y="0" width="80" height="20" uuid="5881f20f-9c59-42e1-877d-341d8554b0a1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[采购订单行号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1762" y="0" width="80" height="20" uuid="0ae26a29-9001-4454-a0a0-3ec29f946daa"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[采购组织编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1842" y="0" width="150" height="20" uuid="cd42ebf4-c769-4c66-9c94-12f2c438672e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[采购组织名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1992" y="0" width="80" height="20" uuid="39fb6546-a1c4-408c-a3d6-a300e9429f76"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[工厂编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2072" y="0" width="80" height="20" uuid="1138c446-7137-415e-b0f3-fe2c6467ca8d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[采购组织编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2272" y="0" width="100" height="20" uuid="f4cfa840-2626-4dff-b4ef-83ef5419c4cf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[原物料凭证年度]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2372" y="0" width="136" height="20" uuid="0cb9baa3-dadf-4c01-970e-4aa39e32b08f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[原物料凭证编号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2508" y="0" width="102" height="20" uuid="77683c2a-1d4d-4c7c-b666-110b402e0c69"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[原物料凭证行号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2152" y="0" width="120" height="20" uuid="8792ea41-f0c2-405e-b13a-66a78eeb9e9b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[采购组织名称]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="159" height="30" uuid="7a758869-eb11-46f7-b471-87980b5191f4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GRNNO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="159" y="0" width="156" height="30" uuid="e99d93a5-7551-40a8-b490-f1b9a32a4d5a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SAPPURCHASEORDERNO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="315" y="0" width="151" height="30" uuid="293b11b2-20ff-4231-b630-54d940418478"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SHOPPINGNOTICENO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="466" y="0" width="80" height="30" uuid="30ae3e5e-d30a-4090-839a-193344a816c6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENDORERPCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="546" y="0" width="150" height="30" uuid="f1fb826e-b50b-4920-9053-3594f70e422f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENDORNAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="696" y="0" width="80" height="30" uuid="f9b145cc-05f0-4a6c-bd6d-d2579fe3dacc"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="776" y="0" width="150" height="30" uuid="5b29a3fb-19e1-49ed-a706-ea6a5a0db009"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALNAME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="926" y="0" width="80" height="30" uuid="f1251ac2-969c-4956-a628-fa0a3e0f8a2b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1006" y="0" width="50" height="30" uuid="4cf7918b-22d9-43c8-a1a1-f782c7fc7295"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNITCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1056" y="0" width="80" height="30" uuid="b5edd0a5-372b-4f8d-99ef-aeb36307b840"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ACCEPTRETURNFLAG} == null ? "" : $F{ACCEPTRETURNFLAG} == 101 ? "收货" : "退货"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1136" y="0" width="86" height="30" uuid="f70970a8-fc62-45f1-8aba-f4857d78b522"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALCERTIFICATEYEAR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1222" y="0" width="120" height="30" uuid="e8e02485-9074-4615-bd4b-59740e3d2696"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALCERTIFICATECODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1342" y="0" width="80" height="30" uuid="211451dc-c343-4ed3-b1d5-b8b6e0ddce7e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALCERTIFICATEITEM}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1422" y="0" width="50" height="30" uuid="b3833914-1e07-4777-8b06-19ad3b036e1d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TAXCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1472" y="0" width="50" height="30" uuid="87251afd-62bc-4f4c-933d-aafe711ccf34"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TAXRATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement x="1522" y="0" width="80" height="30" uuid="5c4ef58d-3713-44e1-a9f8-882876187bff"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CERTIFICATEDATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
+				<reportElement x="1602" y="0" width="80" height="30" uuid="6d75ee41-98e9-4348-bcb9-2334814cd5b3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{POSTINGDATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1682" y="0" width="80" height="30" uuid="d390f2f0-58b9-45de-ad25-ff4bac6736c2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SAPPURCHASEORDERITEM}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1762" y="0" width="80" height="30" uuid="6336f40b-cd42-49fb-b194-84966bc7418f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASINGORGCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1842" y="0" width="150" height="30" uuid="9abcc6ef-6962-4105-b90e-263025e2c7ab"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASINGORGNAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1992" y="0" width="80" height="30" uuid="87d5eefa-1c45-48bc-82fe-4ab645631f66"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PLANTCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2072" y="0" width="80" height="30" uuid="166df07b-c427-42da-a109-edcc97162ce0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASINGGROUPCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2152" y="0" width="120" height="30" uuid="d43e4c8d-d28b-4cb1-9dd7-50c8d4ecc017"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASINGGROUPNAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2272" y="0" width="100" height="30" uuid="3f3c453c-f6ac-477a-8fae-93417946b2fb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OMATERIALCERTIFICATEYEAR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2372" y="0" width="136" height="30" uuid="680031e0-25a6-4e61-a27a-3bc504331f0c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OMATERIALCERTIFICATECODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="2508" y="0" width="102" height="30" uuid="7fc2d892-d0b6-408f-b5a0-12057ddc0c89"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="微软雅黑" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OMATERIALCERTIFICATEITEM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

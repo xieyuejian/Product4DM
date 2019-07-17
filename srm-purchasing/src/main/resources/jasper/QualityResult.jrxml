@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QualityResult" language="groovy" pageWidth="1850" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="1850" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="21cfb9c4-59fa-42c4-972b-acbdd6359835">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LIKE_censorqualityNo" class="java.lang.String"/>
+	<parameter name="LIKE_receivingNoteNo" class="java.lang.String"/>
+	<parameter name="LIKE_vendorCode" class="java.lang.String"/>
+	<parameter name="LIKE_vendorName" class="java.lang.String"/>
+	<parameter name="LIKE_materialCode" class="java.lang.String"/>
+	<parameter name="LIKE_materialName" class="java.lang.String"/>
+	<parameter name="LIKE_purchaseOrderNo" class="java.lang.String"/>
+	<parameter name="LIKE_voucherNo" class="java.lang.String"/>
+	<parameter name="IN_purchasingOrgCode" class="java.lang.String"/>
+	<parameter name="IN_plantCode" class="java.lang.String"/>
+	<parameter name="IN_status" class="java.lang.String"/>
+	<parameter name="EQ_vendorErpCode" class="java.lang.String"/>
+	<parameter name="IN_synStatus" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+  censorqualityno, --检验批号
+  status,--质检状态
+  case when status = 0 then '待检'
+    when status = 1 then '检验中'
+    when status = 2 then '检验完成'
+    else '取消' end status1,
+  inspectiontime,  --送检时间
+  materialcode,  --物料编码
+  materialname,  --物料名称
+  censorqty,  --送检量
+  unit,  --单位
+  checkqualifiedqty,  --已质检合格量
+  checkunqualifiedqty,  --已质检不合格量
+  checkreceiveqty,  --已质检让步接收量
+  resultname,
+  resultcode,
+  erpsyn,
+  case when erpsyn = 0 then '未同步'
+    when erpsyn = 1 then '同步中'
+    when erpsyn = 2 then '已同步'
+    else '同步失败' end erpsyn1,
+  receivingnoteno, --收货单号
+  purchaseorderno,  --采购订单号
+  rowids,   --行号
+  vendorcode,  --供应商编码
+  vendorerpcode,  --供应商erp编码
+  vendorname,
+  voucheryear,  --凭证年度
+  voucherno,  --凭证编号
+  voucherprono, --凭证行项目号
+  purchasingorgcode,
+  purchasingorgname,
+  qualitytime,  --质检时间
+  remark
+from D_CP_CENSORQUALITY t
+where 1=1
+and ($P{LIKE_censorqualityNo} is null or t.censorqualityno like $P{LIKE_censorqualityNo})
+and ($P{LIKE_receivingNoteNo} is null or t.receivingnoteno like $P{LIKE_receivingNoteNo})
+and ($P{LIKE_vendorCode} is null or t.vendorcode like $P{LIKE_vendorCode})
+and ($P{LIKE_vendorName} is null or t.vendorname like $P{LIKE_vendorName})
+and ($P{LIKE_materialCode} is null or t.materialcode like $P{LIKE_materialCode})
+and ($P{LIKE_materialName} is null or t.materialname like $P{LIKE_materialName})
+and ($P{LIKE_purchaseOrderNo} is null or t.purchaseorderno like $P{LIKE_purchaseOrderNo})
+and ($P{LIKE_voucherNo} is null or t.voucherno like $P{LIKE_voucherNo})
+and ($P!{IN_purchasingOrgCode} is null or t.purchasingOrgCode in $P!{IN_purchasingOrgCode})
+and ($P!{IN_plantCode} is null or t.plantCode in $P!{IN_plantCode})
+and ($P!{IN_status} is null or t.status in $P!{IN_status})
+and ($P!{IN_synStatus} is null or t.erpsyn in $P!{IN_synStatus})
+and ($P{EQ_vendorErpCode} is null or t.vendorerpcode = $P{EQ_vendorErpCode})]]>
+	</queryString>
+	<field name="CENSORQUALITYNO" class="java.lang.String"/>
+	<field name="STATUS" class="java.math.BigDecimal"/>
+	<field name="STATUS1" class="java.lang.String"/>
+	<field name="INSPECTIONTIME" class="java.sql.Timestamp"/>
+	<field name="MATERIALCODE" class="java.lang.String"/>
+	<field name="MATERIALNAME" class="java.lang.String"/>
+	<field name="CENSORQTY" class="java.math.BigDecimal"/>
+	<field name="UNIT" class="java.lang.String"/>
+	<field name="CHECKQUALIFIEDQTY" class="java.math.BigDecimal"/>
+	<field name="CHECKUNQUALIFIEDQTY" class="java.math.BigDecimal"/>
+	<field name="CHECKRECEIVEQTY" class="java.math.BigDecimal"/>
+	<field name="RESULTNAME" class="java.lang.String"/>
+	<field name="RESULTCODE" class="java.lang.String"/>
+	<field name="ERPSYN" class="java.math.BigDecimal"/>
+	<field name="ERPSYN1" class="java.lang.String"/>
+	<field name="RECEIVINGNOTENO" class="java.lang.String"/>
+	<field name="PURCHASEORDERNO" class="java.lang.String"/>
+	<field name="ROWIDS" class="java.math.BigDecimal"/>
+	<field name="VENDORCODE" class="java.lang.String"/>
+	<field name="VENDORERPCODE" class="java.lang.String"/>
+	<field name="VENDORNAME" class="java.lang.String"/>
+	<field name="VOUCHERYEAR" class="java.lang.String"/>
+	<field name="VOUCHERNO" class="java.lang.String"/>
+	<field name="VOUCHERPRONO" class="java.lang.String"/>
+	<field name="PURCHASINGORGCODE" class="java.lang.String"/>
+	<field name="PURCHASINGORGNAME" class="java.lang.String"/>
+	<field name="QUALITYTIME" class="java.sql.Timestamp"/>
+	<field name="REMARK" class="java.lang.String"/>
+	<title>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="118" height="35" uuid="83043f86-ff93-484b-bea4-1c6d11afb48a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[检验批号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="0" width="82" height="35" uuid="df21b64c-3e93-4544-aa3b-dc938c7b2e3f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[状态]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="109" height="35" uuid="6b59e810-175a-4f7e-b7d4-a07c2cb11e0b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[送检时间]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="0" width="82" height="35" uuid="a3e41dc5-3350-4436-870b-42809647c3b6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[物料编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="0" width="82" height="35" uuid="5f05fd2c-82f1-4238-b5bb-0e125958aed9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[物料名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="0" width="66" height="35" uuid="57d85ceb-5d9e-4858-b61b-844706a2527e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[送检量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="539" y="0" width="63" height="35" uuid="cd73453b-7797-47ed-b5ee-16218ef12618"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[单位]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="602" y="0" width="66" height="35" uuid="9a93e794-ff48-4e82-a602-556ab4c9e844"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[合格量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="668" y="0" width="66" height="35" uuid="fc4c2c4f-7b4b-414d-9330-18f9ecbe53e3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[不合格量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="734" y="0" width="66" height="35" uuid="2128ffeb-662f-43d0-96fd-06bda818a2bb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[让步接收量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="800" y="0" width="66" height="35" uuid="d1e5a067-d6ec-4f17-ba45-43f0ca750674"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[质检结果]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="866" y="0" width="66" height="35" uuid="7e82d494-9836-4e52-af03-9b9f67762716"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[同步状态]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="932" y="0" width="94" height="35" uuid="ef84fc07-7096-4840-b535-a40ef868495d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[收货单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1026" y="0" width="74" height="35" uuid="f3dd5418-fbfd-400c-b693-299dcea9c98e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[供应商编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1100" y="0" width="74" height="35" uuid="1f469b5a-428d-4086-8151-6f983da5b1b2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[供应商名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1174" y="0" width="94" height="35" uuid="282d706a-f740-44c5-a120-69c5abe29f20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[采购订单号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1268" y="0" width="46" height="35" uuid="d4692e8b-aa47-455c-9a00-30b36e93903d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[行号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1314" y="0" width="69" height="35" uuid="944073be-b308-4d76-9bb2-66b1f9ddf1b1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[凭证年度]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1383" y="0" width="69" height="35" uuid="f58eae10-5439-4bd4-9ee5-007ce692bcc8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[凭证编号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1452" y="0" width="84" height="35" uuid="fed5050b-cf11-4e96-8983-225242b8dd50"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[凭证行项目号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1536" y="0" width="84" height="35" uuid="81b6fdcb-88a2-4e4c-91ff-e2582ad51f7e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[采购组织编码]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1620" y="0" width="84" height="35" uuid="ebeab19b-59e5-491d-aa12-aeed4eb68fcf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[采购组织名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1704" y="0" width="84" height="35" uuid="02159b3b-e134-4869-b776-90684e7db8c1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[质检时间]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1788" y="0" width="62" height="35" uuid="68faafa1-360d-4345-bd14-5b2f53b1a506"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[备注]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="118" height="20" uuid="ae044ad6-998d-4640-97c5-3729aaa1deb6"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CENSORQUALITYNO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="118" y="0" width="82" height="20" uuid="23684c3c-c993-4e7e-84d2-a7cc931dda48"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STATUS1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="200" y="0" width="109" height="20" uuid="6a1167f2-1140-4329-ab2b-55bc04e26212"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{INSPECTIONTIME}==null?"":new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format($F{INSPECTIONTIME}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="309" y="0" width="82" height="20" uuid="81e1e83f-65d9-41ca-903d-43790fce42a7"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALCODE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="391" y="0" width="82" height="20" uuid="e3a3818a-c02c-4b28-a3a2-8019051385da"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIALNAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="473" y="0" width="66" height="20" uuid="ab717e91-5184-40f3-8727-12e3450d83ca"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CENSORQTY}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="539" y="0" width="63" height="20" uuid="6f8d24b7-fc0e-45eb-89ba-99d5c0edbb6e"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UNIT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="602" y="0" width="66" height="20" uuid="eaa6eb38-34b7-41e2-abc7-0516cd805371"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHECKQUALIFIEDQTY}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="668" y="0" width="66" height="20" uuid="a2d7701f-2199-476d-b6d9-700209063116"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHECKUNQUALIFIEDQTY}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="734" y="0" width="66" height="20" uuid="8b62678d-0709-405d-bb6c-cca24e3bdacb"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHECKRECEIVEQTY}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="800" y="0" width="66" height="20" uuid="c41a142e-d74c-414b-ac1a-bd6d7b88a743"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RESULTNAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="866" y="0" width="66" height="20" uuid="d0604f62-b95d-4f71-b4f2-8bffd2ed0db0"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ERPSYN1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="932" y="0" width="94" height="20" uuid="cfe6bdac-7e06-4768-ab07-3f2d679c582b"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RECEIVINGNOTENO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1026" y="0" width="74" height="20" uuid="9f9303b6-03d4-4b0b-a859-47c0240149fc"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENDORERPCODE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1100" y="0" width="74" height="20" uuid="24171bec-6301-4560-a53e-93df5e7f8583"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VENDORNAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1174" y="0" width="94" height="20" uuid="bf20fd70-5985-4245-835a-98bf667f2334"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASEORDERNO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1268" y="0" width="46" height="20" uuid="850c1dab-938d-4bf9-871a-c434d6125224"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ROWIDS}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1314" y="0" width="69" height="20" uuid="836aa2a7-55eb-479e-84c0-e981528706ac"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VOUCHERYEAR}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1383" y="0" width="69" height="20" uuid="7c381df0-41ae-4cd3-a27d-b9e72c18bbdc"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VOUCHERNO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1452" y="0" width="84" height="20" uuid="16db6945-f222-48ef-b382-d20a35de3e5b"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VOUCHERPRONO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1536" y="0" width="84" height="20" uuid="6cb7b0c6-3f35-4779-8e57-08396c46a18e"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASINGORGCODE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1620" y="0" width="84" height="20" uuid="bc1239ff-2963-4bbf-9c61-21c899d5072b"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PURCHASINGORGNAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1704" y="0" width="84" height="20" uuid="50f29d04-a1b7-4bcb-b875-a9e3ca43a5b4"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{QUALITYTIME}==null?"":new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format($F{QUALITYTIME}.getTime())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="1788" y="0" width="62" height="20" uuid="d055675f-e9d1-45c9-ad6d-2f3f147e2033"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REMARK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

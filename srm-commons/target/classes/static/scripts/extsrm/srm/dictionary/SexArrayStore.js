@@ -1,0 +1,1 @@
+Ext.define("Ext.srm.dictionary.SexArrayStore",{extend:"Ext.data.ArrayStore",alias:"sexStore",xtype:"sexStore",storeId:"sexStore",fields:["itemCode","itemName"],data:[["M",$("staff.male")],["F",$("staff.female")]],constructor:function(A){var A=A||{};this.callParent([A])}});

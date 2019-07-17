@@ -1,0 +1,1 @@
+Ext.define("Ext.srm.dictionary.YNArrayStore",{extend:"Ext.data.ArrayStore",alias:"ynStore",xtype:"ynStore",storeId:"ynStore",fields:["itemCode","itemName"],data:[["Y",$("dict.yes")],["N",$("dict.no")]],constructor:function(A){var A=A||{};this.callParent([A])}});

@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SendscheduleDetailView" language="groovy" pageWidth="1574" pageHeight="555" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1574" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="92d4e7ab-f241-4d4e-ab58-468eac911236">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LIKE_vendorName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LIKE_materialCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LIKE_materialName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="GE_scheduleTime" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LT_scheduleTime" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IN_sendFlag" class="java.lang.String">
+		<defaultValueExpression><![CDATA["AND 1=1"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IN_purchasingOrgCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA["AND 1=1"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IN_purchasingGroupCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA["AND 1=1"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IN_plantCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA["AND 1=1"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LIKE_purchaseOrderNo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LIKE_purchasingGroupCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LIKE_purchasingOrgCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LIKE_sendScheduleNo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EQ_vendorErpCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LIKE_vendorErpCode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EQ_vendorCode" class="java.lang.String"/>
+	<parameter name="LIKE_vendorCode" class="java.lang.String"/>
+	<parameter name="EQ_rowIds" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+DPS.VENDORCODE
+,DPS.VENDORNAME
+,SCHEDULEQTY
+,DELIVERYQTY
+,ONWAYQTY
+,RECEIPTQTY
+,RETURNGOODSQTY
+,CANSENDQTY
+,DPS.SENDSCHEDULENO
+,DPS.PURCHASEORDERNO
+,DPS.ROWIDS
+,SENDQTY
+,DPS.UNITCODE
+,DPS.plantCode
+,DPS.PLANTCODE
+,DPS.STOCKLOCAL
+,DPS.PURCHASINGORGCODE
+,DPS.sendFlag
+FROM  D_CP_SENDSCHEDULEDETAIL DPS,D_CP_SENDSCHEDULE DPSZ
+WHERE  DPS.SENDSCHEDULENO = DPSZ.SENDSCHEDULENO
+AND DPSZ.SendScheduleState = 6
+AND ($P{LIKE_sendScheduleNo} IS NULL OR  DPS.SENDSCHEDULENO LIKE $P{LIKE_sendScheduleNo})
+AND ($P{LIKE_purchasingOrgCode} IS NULL OR DPS.PURCHASINGORGCODE LIKE $P{LIKE_purchasingOrgCode})
+AND ($P{EQ_vendorCode} IS NULL OR DPS.VENDORCODE = $P{EQ_vendorCode})
+AND ($P{LIKE_vendorCode} IS NULL OR DPS.VENDORCODE LIKE $P{LIKE_vendorCode})
+AND ($P{LIKE_vendorName} IS NULL OR DPS.VENDORNAME LIKE $P{LIKE_vendorName})
+AND ($P{LIKE_purchaseOrderNo} IS NULL OR DPS.PURCHASEORDERNO LIKE  $P{LIKE_purchaseOrderNo})
+AND ($P{LIKE_materialCode} IS NULL OR DPS.MATERIALCODE LIKE $P{LIKE_materialCode})
+AND ($P{LIKE_materialName} IS NULL OR DPS.MATERIALNAME LIKE $P{LIKE_materialName})
+AND ($P{EQ_rowIds} IS NULL OR DPS.ROWIDS = $P{EQ_rowIds})
+
+AND ($P{GE_scheduleTime} IS NULL OR DPS.SCHEDULETIME >= to_char($P{GE_scheduleTime},'yyyy-mm-dd'))
+AND ($P{LT_scheduleTime} IS NULL OR DPS.SCHEDULETIME <to_char($P{LT_scheduleTime},'yyyy-mm-dd'))
+AND ($P{IN_plantCode} IS NULL OR DPS.plantCode in ($P{IN_plantCode}))
+AND ($P{IN_purchasingOrgCode} IS NULL OR DPS.purchasingOrgCode in ($P{IN_purchasingOrgCode}))]]>
+	</queryString>
+	<field name="VENDORCODE" class="java.lang.String"/>
+	<field name="VENDORNAME" class="java.lang.String"/>
+	<field name="SCHEDULEQTY" class="java.math.BigDecimal"/>
+	<field name="DELIVERYQTY" class="java.math.BigDecimal"/>
+	<field name="ONWAYQTY" class="java.math.BigDecimal"/>
+	<field name="RECEIPTQTY" class="java.math.BigDecimal"/>
+	<field name="RETURNGOODSQTY" class="java.math.BigDecimal"/>
+	<field name="CANSENDQTY" class="java.math.BigDecimal"/>
+	<field name="SENDSCHEDULENO" class="java.lang.String"/>
+	<field name="PURCHASEORDERNO" class="java.lang.String"/>
+	<field name="ROWIDS" class="java.math.BigDecimal"/>
+	<field name="SENDQTY" class="java.math.BigDecimal"/>
+	<field name="UNITCODE" class="java.lang.String"/>
+	<field name="PLANTCODE" class="java.lang.String"/>
+	<field name="STOCKLOCAL" class="java.lang.String"/>
+	<field name="PURCHASINGORGCODE" class="java.lang.String"/>
+	<field name="SENDFLAG" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="107" height="20" uuid="ca1a291b-ee19-4ffc-b59f-8a17de105db2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("vendor.name")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="0" width="100" height="20" uuid="6033cfe6-f71e-4b90-ac52-4d2ad3dfcab1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("sendscheduledetail.scheduleQty")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="100" height="20" uuid="118f9c58-365e-45bb-83d5-4916db058907"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("sendscheduledetail.deliveryQty")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="307" y="0" width="100" height="20" uuid="fa19dfc9-3f89-420a-b4b2-441d13a22aeb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("sendscheduledetail.onWayQty")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="0" width="100" height="20" uuid="d83f6d08-e2af-44fd-91e9-8263ce1d6d0f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("sendscheduledetail.receiptQty")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="507" y="0" width="100" height="20" uuid="9e50300d-6697-41d3-abef-6d7d96c1e17a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("deliveryDtl.returnNumber")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="607" y="0" width="100" height="20" uuid="4e2ab86b-2375-4532-a65d-b8538ed13321"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("sendschedule.canSendQty")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="707" y="0" width="100" height="20" uuid="41a37b14-61cc-4d44-8a5c-a4201a7bea3d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("deliveryDtl.scheduleCode")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="807" y="0" width="100" height="20" uuid="cd6d2e5f-2b93-418c-b23c-42fac4dec1cd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("purchaseOrder.purchaseOrderNo")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="907" y="0" width="100" height="20" uuid="6b4ee2f9-7925-4e91-8c61-cedccec6bf21"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("label.rowNo")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1007" y="0" width="100" height="20" uuid="a7529572-e7ae-417f-bfe7-34450d6719e6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("deliveryDtl.orderNumber")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1107" y="0" width="67" height="20" uuid="862d7479-ddff-49e8-ab22-363376585b4e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("iReport.porder.unit")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1174" y="0" width="100" height="20" uuid="22f3f1fc-37b3-4890-b6a4-d9f2b1374c9c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("delivery.plantCode")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1274" y="0" width="100" height="20" uuid="06989ab3-4207-4d61-9891-a8106a3a2de1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("receivingnote.storeLocalCode")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1374" y="0" width="100" height="20" uuid="dc9e6d63-1fcf-444a-95c8-8a78af2b48e0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("purchasingOrg.code")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1474" y="0" width="100" height="20" uuid="77909b31-23ca-48b9-8756-9c2da28a3b29"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[com.huiju.application.e.report.util.I18nUtils.getText("purchasingOrg.name")]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="107" height="20" uuid="6d4623d5-9292-4486-8e1e-c62943796a91"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{VENDORNAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="0" width="100" height="20" uuid="697c4b18-0f74-43d8-9d7e-74249dd150b2"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{SCHEDULEQTY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="207" y="0" width="100" height="20" uuid="1b5e2e7f-dc3e-441d-b202-1156169733c9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{DELIVERYQTY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="307" y="0" width="100" height="20" uuid="4bbddb15-d81c-4a25-9818-b21d500cddb4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{ONWAYQTY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="407" y="0" width="100" height="20" uuid="04218b87-74bf-422b-8120-6657bdcc158b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{RECEIPTQTY}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="507" y="0" width="100" height="20" uuid="c9c0f22d-ef22-4ce1-a778-f9564406a788"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{RETURNGOODSQTY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="607" y="0" width="100" height="20" uuid="bfc2edff-32cb-4d0a-af3e-38f879c650bf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{CANSENDQTY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="707" y="0" width="100" height="20" uuid="4a4fc621-a8a5-4ec6-becf-40ec390dfc37"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{SENDSCHEDULENO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="807" y="0" width="100" height="20" uuid="9b58f17f-34a0-4967-be29-7fd526f22c6e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{PURCHASEORDERNO}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="907" y="0" width="100" height="20" uuid="26e35c08-5dca-458e-8fca-850c8241a45b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{ROWIDS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1007" y="0" width="100" height="20" uuid="d2087f68-2803-414d-acdf-0cecfc5a8399"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{SENDQTY}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1107" y="0" width="67" height="20" uuid="bae5b843-fbbe-44f8-8c5b-959c1afa0bbd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{UNITCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1174" y="0" width="100" height="20" uuid="2098aa39-e861-40a2-b88d-454d00957e99"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{PLANTCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1274" y="0" width="100" height="20" uuid="fc3d541f-217a-4760-9d51-253fb8b127c0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{STOCKLOCAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1374" y="0" width="100" height="20" uuid="2576ac6b-2eca-48e0-9091-448ba7894b12"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{PURCHASINGORGCODE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1474" y="0" width="100" height="20" uuid="fb43f3d0-35f2-41ad-990e-b87ef288e7f4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{PURCHASINGORGCODE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

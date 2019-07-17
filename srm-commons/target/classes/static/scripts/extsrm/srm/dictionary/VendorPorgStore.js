@@ -1,0 +1,1 @@
+Ext.define("Ext.srm.dictionary.VendorPorgStore",{extend:"Ext.ux.data.JsonStore",alias:"vendorPorgStore",xtype:"vendorPorgStore",storeId:"vendorPorgStore",fields:["purchasingOrgCode","purchasingOrgName"],autoLoad:true,constructor:function(A){var A=A||{};this.proxy={url:path_srment+"/sl/masterdata/Vendor_findVendorPorgDtlViewAll.action",type:"ajax"};this.callParent([A])}});
